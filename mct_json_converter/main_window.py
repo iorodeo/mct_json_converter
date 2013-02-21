@@ -93,7 +93,7 @@ class ConverterMainWindow(QtGui.QMainWindow,Ui_MainWindow):
             try:
                 converter = JSON_Converter(filePath)
             except Exception, e:
-                message = 'unable to convert, {0}, {1}'.format(fileName,str(e))
+                message = 'Unable to convert file: {0}\n\n{1}'.format(fileName,str(e))
                 QtGui.QMessageBox.critical(self,'Error',message)
                 self.enableWidgetsAfterConverting()
                 return
@@ -108,7 +108,7 @@ class ConverterMainWindow(QtGui.QMainWindow,Ui_MainWindow):
             try:
                 writeFunc()
             except Exception, e:
-                message = 'unable to convert, {0}, {1}'.format(fileName,str(e))
+                message = 'Unable to convert file: {0}\n\n{1}'.format(fileName,str(e))
                 QtGui.QMessageBox.critical(self,'Error',message)
                 self.enableWidgetsAfterConverting()
                 return

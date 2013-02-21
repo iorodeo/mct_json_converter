@@ -40,7 +40,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Selected JSON Files</string>
+       <string>JSON Files</string>
       </property>
      </widget>
     </item>

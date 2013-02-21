@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'converter.ui'
 #
-# Created: Wed Feb 20 17:41:52 2013
+# Created: Thu Feb 21 11:42:04 2013
 #      by: PyQt4 UI code generator 4.7.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -71,7 +71,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MCT JSON Converter", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("MainWindow", "Selected JSON Files", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("MainWindow", "JSON Files", None, QtGui.QApplication.UnicodeUTF8))
         self.matRadioButton.setText(QtGui.QApplication.translate("MainWindow", "mat", None, QtGui.QApplication.UnicodeUTF8))
         self.hdf5RadioButton.setText(QtGui.QApplication.translate("MainWindow", "hdf5", None, QtGui.QApplication.UnicodeUTF8))
         self.selectPushButton.setText(QtGui.QApplication.translate("MainWindow", "Select Files", None, QtGui.QApplication.UnicodeUTF8))
