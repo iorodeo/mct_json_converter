@@ -1,0 +1,2 @@
+import mct_json_converter
+mct_json_converter.main_window.converterMain(()
