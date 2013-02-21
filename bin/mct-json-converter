@@ -1,2 +1,3 @@
+#!/usr/bin/env python
 import mct_json_converter
-mct_json_converter.main_window.converterMain(()
+mct_json_converter.main_window.converterMain()

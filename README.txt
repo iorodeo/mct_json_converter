@@ -1,5 +1,6 @@
 mct_json_converter: a Python library and GUI for converting the json tracking
-data files produced by MCT (Multiple Camera Tracking System) to .mat or hdf5.
+data files produced by MCT (Multiple Camera Tracking System) to .mat or hdf5 
+formats.
 
 Installations instructions can be found in the INSTALL file.
 

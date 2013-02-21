@@ -99,11 +99,20 @@ class ConverterMainWindow(QtGui.QMainWindow,Ui_MainWindow):
                 return
 
             if fileFormat == 'mat':
-                converter.writeMatFile()
+                writeFunc = converter.writeMatFile
             elif fileFormat == 'hdf5':
-                converter.writeH5File()
+                writeFunc = converter.writeH5File
             else:
                 raise RuntimeError, 'unknown file format'
+
+            try:
+                writeFunc()
+            except Exception, e:
+                message = 'unable to convert, {0}, {1}'.format(fileName,str(e))
+                QtGui.QMessageBox.critical(self,'Error',message)
+                self.enableWidgetsAfterConverting()
+                return
+
         self.statusbar.showMessage(' Done')
         self.enableWidgetsAfterConverting()
 
@@ -114,7 +123,7 @@ class ConverterMainWindow(QtGui.QMainWindow,Ui_MainWindow):
             fileFormat = 'mat'
         return fileFormat
 
-def ConverterMain():
+def converterMain():
     app = QtGui.QApplication(sys.argv)
     mainWindow = ConverterMainWindow()
     mainWindow.show()
@@ -122,4 +131,4 @@ def ConverterMain():
 
 # -----------------------------------------------------------------------------
 if __name__ == '__main__':
-    ConverterMain()
+    converterMain()
