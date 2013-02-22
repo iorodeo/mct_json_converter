@@ -40,7 +40,7 @@ class ConverterMainWindow(QtGui.QMainWindow,Ui_MainWindow):
                 self,
                 'Select JSON files for conversion',
                 self.directory,
-                '*.json'
+                "JSON (*.json)"
                 )
 
         self.fileListWidget.clear()
