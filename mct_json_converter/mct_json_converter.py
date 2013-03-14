@@ -68,6 +68,7 @@ class JSON_Converter(object):
 
         # Initialize arrays based on first item in list
         for k,v in self.jsonData[0].iteritems():
+            k = str(k)
             if ('pts' in k) or ('bndry' in k) or ('midpt' in k):
                 if type(v) != list:
                     v = [v]
@@ -76,7 +77,7 @@ class JSON_Converter(object):
                     point = 'p{0}'.format(i+1)
                     self.dictOfArrays[k][point] = scipy.zeros((dataLength,2), dtype=scipy.float64)
             else:
-                if type(v) == str:
+                if type(v) == str or type(v) == unicode:
                     self.dictOfArrays[k] = []
                 else:
                     if type(v) == int:
@@ -96,6 +97,7 @@ class JSON_Converter(object):
         # Add data to arrays
         for i, item in enumerate(self.jsonData):
             for k,v in item.iteritems():
+                k = str(k)
                 if ('pts' in k) or ('bndry' in k) or ('midpt' in k):
                     if type(v) != list:
                         v = [v]
@@ -104,7 +106,8 @@ class JSON_Converter(object):
                         self.dictOfArrays[k][point][i,0] = subItem['x']
                         self.dictOfArrays[k][point][i,1] = subItem['y']
                 else:
-                    if type(v) == str:
+                    if type(v) == str or type(v) == unicode:
+                        v=str(v)
                         self.dictOfArrays[k].append(v)
                         if k == 'camera':
                             dummy, numStr = v.split('_')
