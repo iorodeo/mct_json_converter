@@ -7,8 +7,12 @@ from PyQt4 import QtGui
 from converter_ui import Ui_MainWindow
 from mct_json_converter import JSON_Converter 
 
-USER_HOME = os.getenv('HOME')
-DEFAULT_DIRECTORY = os.path.join(USER_HOME,'mct_log')
+USER_HOME = os.getenv('USERPROFILE')
+if USER_HOME is None:
+    USER_HOME = os.getenv('HOME')
+    DEFAULT_DIRECTORY = os.path.join(USER_HOME,'mct_log')
+else:
+    DEFAULT_DIRECTORY = USER_HOME
 
 class ConverterMainWindow(QtGui.QMainWindow,Ui_MainWindow):
 
