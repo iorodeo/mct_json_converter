@@ -1,10 +1,14 @@
 from __future__ import print_function
 import simplejson as json
-import h5py
 import numpy
 import scipy
 import scipy.io
 import os
+try:
+    import h5py
+    haveh5py = True
+except ImportError:
+    haveh5py = False
 
 class JSON_Converter(object):
 
@@ -23,6 +27,7 @@ class JSON_Converter(object):
         scipy.io.savemat(matFileName, {'data': dataDict}, oned_as='row')
             
     def writeH5File(self,h5FileName=None):
+        assert haveh5py, 'h5py library is not installed'
         assert self.dictOfArrays is not None, 'dictOfArrays is None'
         if h5FileName is None:
             h5FileName = self.getAutoFileName(ext='hdf5')

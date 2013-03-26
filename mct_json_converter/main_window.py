@@ -2,10 +2,10 @@ from __future__ import print_function
 import sys
 import os
 import time
+import mct_json_converter
 from PyQt4 import QtCore
 from PyQt4 import QtGui
 from converter_ui import Ui_MainWindow
-from mct_json_converter import JSON_Converter 
 
 USER_HOME = os.getenv('USERPROFILE')
 if USER_HOME is None:
@@ -30,6 +30,8 @@ class ConverterMainWindow(QtGui.QMainWindow,Ui_MainWindow):
         else:
             self.directory = USER_HOME
         self.disableWidgetsOnEmpty()
+        if not mct_json_converter.haveh5py:
+            self.hdf5RadioButton.setEnabled(False)
 
     def connectActions(self):
         self.selectPushButton.clicked.connect(self.selectClicked)
@@ -38,8 +40,7 @@ class ConverterMainWindow(QtGui.QMainWindow,Ui_MainWindow):
 
     def selectClicked(self):
         if not os.path.isdir(self.directory):
-            self.directory = USER_HOME
-
+            self.directory = USER_HOME 
         fileNameList = QtGui.QFileDialog.getOpenFileNames(
                 self,
                 'Select JSON files for conversion',
@@ -68,7 +69,8 @@ class ConverterMainWindow(QtGui.QMainWindow,Ui_MainWindow):
         self.selectPushButton.setEnabled(True)
         self.clearPushButton.setEnabled(True)
         self.matRadioButton.setEnabled(True)
-        self.hdf5RadioButton.setEnabled(True)
+        if mct_json_converter.haveh5py:
+            self.hdf5RadioButton.setEnabled(True)
         self.fileListWidget.setEnabled(True)
         self.convertPushButton.setEnabled(True)
 
@@ -95,7 +97,7 @@ class ConverterMainWindow(QtGui.QMainWindow,Ui_MainWindow):
             self.statusbar.showMessage(statusMessage)
             self.repaint()
             try:
-                converter = JSON_Converter(filePath)
+                converter = mct_json_converter.JSON_Converter(filePath)
             except Exception, e:
                 message = 'Unable to convert file: {0}\n\n{1}'.format(fileName,str(e))
                 QtGui.QMessageBox.critical(self,'Error',message)
